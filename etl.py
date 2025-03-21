@@ -5,7 +5,7 @@ import datetime
 from datetime import date, datetime, time
 
 
-# Get HTML content 
+# Get HTML content including data
 def get_data(url):
     r = requests.get(url)
     if r.status_code == 200:
@@ -17,6 +17,7 @@ def get_data(url):
     return soup
 
 
+# Process data
 def transform_data(soup) -> dict:
     job_title = [job.text.strip() for job in soup.find_all('h2', class_= 'title is-5')]
     print('\'Job Title\' data successfully retrieved!')
@@ -47,7 +48,8 @@ def transform_data(soup) -> dict:
     return transformed_data
 
 
-def load_to_csv(transformed_data, file_name='job_posted_data'):
+# Store process data in csv format
+def load_to_csv(transformed_data, file_name='job_posted_data') -> None:
     df = pd.DataFrame(transformed_data)
     record_no = df.shape[0]
     df.to_csv(f'{file_name}.csv')
