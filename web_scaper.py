@@ -5,7 +5,7 @@ import datetime
 from datetime import date, datetime, time
 
 
-# Get HTML content including data
+# Get HTML content
 def get_data(url):
     r = requests.get(url)
     if r.status_code == 200:
@@ -49,7 +49,7 @@ def transform_data(soup) -> dict:
 
 
 # Store process data in csv format
-def load_to_csv(transformed_data, file_name='job_posted_data') -> None:
+def load_to_csv(transformed_data, file_name='job_listings_data') -> None:
     df = pd.DataFrame(transformed_data)
     record_no = df.shape[0]
     df.to_csv(f'{file_name}.csv')
