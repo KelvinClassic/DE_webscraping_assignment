@@ -1,6 +1,6 @@
 import pandas as pd # For data processing
-from bs4 import BeautifulSoup # For data extraction
-import requests # For web interaction
+from bs4 import BeautifulSoup # For web scraping 
+import requests # For HTTP requests
 import datetime
 from datetime import date, datetime, time
 
@@ -48,7 +48,7 @@ def transform_data(soup) -> dict:
     return transformed_data
 
 
-# Store process data in csv format
+# Store processed data in csv format
 def load_to_csv(transformed_data, file_name='job_listings_data') -> None:
     df = pd.DataFrame(transformed_data)
     record_no = df.shape[0]
